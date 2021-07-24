@@ -18,7 +18,7 @@ import java.util.Map;
 @Configuration
 public class KafkaConsumerConfig3 {
 
-    private String kafkaServer = "localhost:9092";
+    private String kafkaServer = "localhost:9094";
 
     @Value("${spring.kafka.consumer.group-id}")
     private String kafkaGroupId;

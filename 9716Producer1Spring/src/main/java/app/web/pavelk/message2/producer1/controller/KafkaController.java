@@ -19,7 +19,8 @@ public class KafkaController {
     private final KafkaTemplate<String, String> kafkaTemplate2;
 
     @GetMapping("/msg")
-    public void k3msg() {
+    public String k3msg() {
+        System.out.println("mgs");
         UserDto userDto = new UserDto();
         userDto.setName("ss");
         userDto.setAge(1L);
@@ -28,6 +29,7 @@ public class KafkaController {
                 = kafkaTemplate.send("msg", 150L, userDto);
         future.addCallback(System.out::println, System.err::println);
         kafkaTemplate.flush();
+        return "ok";
     }
 
     @GetMapping("/k1")
