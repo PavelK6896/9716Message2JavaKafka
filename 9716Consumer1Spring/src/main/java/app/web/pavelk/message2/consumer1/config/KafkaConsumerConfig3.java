@@ -18,7 +18,7 @@ import java.util.Map;
 @Configuration
 public class KafkaConsumerConfig3 {
 
-    private String kafkaServer = "localhost:9094";
+    private String kafkaServer = "localhost:9092";
 
     @Value("${spring.kafka.consumer.group-id}")
     private String kafkaGroupId;
@@ -41,6 +41,7 @@ public class KafkaConsumerConfig3 {
         Map<String, Object> props = new HashMap<>();
         props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, kafkaServer);
         props.put(ConsumerConfig.GROUP_ID_CONFIG, kafkaGroupId);
+        props.put(ConsumerConfig.CLIENT_ID_CONFIG, kafkaGroupId);
         props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, LongDeserializer.class);
         props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
         return props;
@@ -67,6 +68,7 @@ public class KafkaConsumerConfig3 {
         Map<String, Object> props = new HashMap<>();
         props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, kafkaServer);
         props.put(ConsumerConfig.GROUP_ID_CONFIG, kafkaGroupId);
+        props.put(ConsumerConfig.CLIENT_ID_CONFIG, kafkaGroupId);
         props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
         props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
         props.put(JsonDeserializer.TRUSTED_PACKAGES, "*");

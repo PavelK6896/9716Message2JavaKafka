@@ -19,7 +19,7 @@ import java.util.Map;
 @Configuration
 public class KafkaConfig {
 
-    private String kafkaServer = "localhost:9094";
+    private String kafkaServer = "localhost:9092";
 
     @Value("${spring.kafka.consumer.group-id}")
     private String kafkaGroupId;
@@ -29,6 +29,7 @@ public class KafkaConfig {
         Map<String, Object> props = new HashMap<>();
         props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, kafkaServer);
         props.put(ConsumerConfig.GROUP_ID_CONFIG, kafkaGroupId);
+        props.put(ConsumerConfig.CLIENT_ID_CONFIG, kafkaGroupId);
         props.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG,                LongSerializer.class);
         props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG,                JsonSerializer.class);
         return props;
@@ -51,6 +52,7 @@ public class KafkaConfig {
         Map<String, Object> props = new HashMap<>();
         props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, kafkaServer);
         props.put(ConsumerConfig.GROUP_ID_CONFIG, kafkaGroupId);
+        props.put(ConsumerConfig.CLIENT_ID_CONFIG, kafkaGroupId);
         props.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
         props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
         return new DefaultKafkaProducerFactory<>(props);
